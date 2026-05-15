@@ -185,64 +185,66 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Products grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {/* Products grid — 2 колонки, крупные карточки */}
+        <div className="grid grid-cols-2 gap-4">
           {filtered.map((product, i) => (
             <div
               key={product.id}
               onClick={() => { setSelectedProduct(product.id); window.scrollTo({ top: 0 }); }}
-              className="bg-card rounded-2xl overflow-hidden cursor-pointer border border-border/40 hover:border-primary/30 transition-all hover:-translate-y-1 duration-200"
+              className="bg-card rounded-3xl overflow-hidden cursor-pointer border border-border/40 hover:border-primary/30 transition-all hover:-translate-y-1 duration-200"
               style={{ animation: `slideUp 0.4s ease ${i * 60}ms both` }}
             >
-              <div className="relative aspect-square overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <img
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 />
                 {product.tag && (
-                  <Badge className="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 bg-primary text-primary-foreground border-0 rounded-full">
+                  <Badge className="absolute top-3 left-3 text-xs font-bold px-3 py-1 bg-primary text-primary-foreground border-0 rounded-full">
                     {product.tag}
                   </Badge>
                 )}
                 <button
                   onClick={(e) => { e.stopPropagation(); toggleWishlist(product.id); }}
-                  className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all hover:bg-black/70"
+                  className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all hover:bg-black/70"
                 >
                   <Icon
                     name="Heart"
-                    size={15}
+                    size={16}
                     className={wishlist.includes(product.id) ? "fill-red-500 text-red-500" : "text-white"}
                   />
                 </button>
+                {/* Gradient overlay at bottom */}
+                <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/80 to-transparent" />
+                <div className="absolute bottom-0 inset-x-0 p-4">
+                  <div className="flex items-center gap-1 mb-1">
+                    <Icon name="Star" size={11} className="fill-yellow-400 text-yellow-400" />
+                    <span className="text-xs font-medium text-white">{product.rating}</span>
+                    <span className="text-xs text-white/60">({product.reviews})</span>
+                  </div>
+                  <p className="text-white font-bold text-sm leading-snug line-clamp-2">{product.name}</p>
+                </div>
               </div>
 
-              <div className="p-3">
-                <p className="text-xs text-muted-foreground mb-1 truncate">{product.seller}</p>
-                <p className="text-sm font-semibold leading-snug line-clamp-2 mb-2">{product.name}</p>
-
-                <div className="flex items-center gap-1 mb-3">
-                  <Icon name="Star" size={11} className="fill-yellow-400 text-yellow-400" />
-                  <span className="text-xs font-medium">{product.rating}</span>
-                  <span className="text-xs text-muted-foreground">({product.reviews})</span>
-                </div>
-
+              <div className="p-4">
+                <p className="text-xs text-muted-foreground mb-3 truncate">{product.seller}</p>
                 <div className="flex items-end justify-between">
                   <div>
-                    <div className="text-base font-bold text-foreground">{formatPrice(product.price)}</div>
+                    <div className="text-xl font-black text-foreground">{formatPrice(product.price)}</div>
                     {product.oldPrice && (
                       <div className="text-xs text-muted-foreground line-through">{formatPrice(product.oldPrice)}</div>
                     )}
                   </div>
                   <button
                     onClick={(e) => { e.stopPropagation(); toggleCart(product.id); }}
-                    className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                    className={`w-11 h-11 rounded-full flex items-center justify-center transition-all text-base font-bold ${
                       cart.includes(product.id)
                         ? "bg-primary text-primary-foreground"
                         : "bg-secondary text-foreground hover:bg-primary hover:text-primary-foreground"
                     }`}
                   >
-                    <Icon name={cart.includes(product.id) ? "Check" : "Plus"} size={16} />
+                    <Icon name={cart.includes(product.id) ? "Check" : "Plus"} size={18} />
                   </button>
                 </div>
               </div>
