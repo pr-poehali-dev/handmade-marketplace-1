@@ -144,7 +144,7 @@ export default function Index() {
       </section>
 
       {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <main className="max-w-7xl mx-auto px-2 sm:px-6 py-6 sm:py-10">
         {/* Categories */}
         <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 mb-8">
           {CATEGORIES.map((cat) => (
@@ -185,67 +185,72 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Products grid — 2 колонки, крупные карточки */}
-        <div className="grid grid-cols-2 gap-4">
+        {/* Products grid — mobile: 1 col fullscreen, desktop: 2 col */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {filtered.map((product, i) => (
             <div
               key={product.id}
               onClick={() => { setSelectedProduct(product.id); window.scrollTo({ top: 0 }); }}
-              className="bg-card rounded-3xl overflow-hidden cursor-pointer border border-border/40 hover:border-primary/30 transition-all hover:-translate-y-1 duration-200"
+              className="relative rounded-3xl overflow-hidden cursor-pointer border border-border/40 hover:border-primary/30 transition-all duration-200 group"
               style={{ animation: `slideUp 0.4s ease ${i * 60}ms both` }}
             >
-              <div className="relative aspect-[4/5] overflow-hidden">
+              {/* Fullscreen image */}
+              <div className="relative w-full h-[85vh] sm:h-[70vh] overflow-hidden bg-card">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                {product.tag && (
-                  <Badge className="absolute top-3 left-3 text-xs font-bold px-3 py-1 bg-primary text-primary-foreground border-0 rounded-full">
-                    {product.tag}
-                  </Badge>
-                )}
-                <button
-                  onClick={(e) => { e.stopPropagation(); toggleWishlist(product.id); }}
-                  className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all hover:bg-black/70"
-                >
-                  <Icon
-                    name="Heart"
-                    size={16}
-                    className={wishlist.includes(product.id) ? "fill-red-500 text-red-500" : "text-white"}
-                  />
-                </button>
-                {/* Gradient overlay at bottom */}
-                <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/80 to-transparent" />
-                <div className="absolute bottom-0 inset-x-0 p-4">
-                  <div className="flex items-center gap-1 mb-1">
-                    <Icon name="Star" size={11} className="fill-yellow-400 text-yellow-400" />
-                    <span className="text-xs font-medium text-white">{product.rating}</span>
-                    <span className="text-xs text-white/60">({product.reviews})</span>
-                  </div>
-                  <p className="text-white font-bold text-sm leading-snug line-clamp-2">{product.name}</p>
-                </div>
-              </div>
 
-              <div className="p-4">
-                <p className="text-xs text-muted-foreground mb-3 truncate">{product.seller}</p>
-                <div className="flex items-end justify-between">
-                  <div>
-                    <div className="text-xl font-black text-foreground">{formatPrice(product.price)}</div>
-                    {product.oldPrice && (
-                      <div className="text-xs text-muted-foreground line-through">{formatPrice(product.oldPrice)}</div>
-                    )}
-                  </div>
+                {/* Top badges */}
+                <div className="absolute top-4 left-4 right-4 flex items-start justify-between">
+                  {product.tag ? (
+                    <Badge className="text-xs font-bold px-3 py-1 bg-primary text-primary-foreground border-0 rounded-full shadow-lg">
+                      {product.tag}
+                    </Badge>
+                  ) : <div />}
                   <button
-                    onClick={(e) => { e.stopPropagation(); toggleCart(product.id); }}
-                    className={`w-11 h-11 rounded-full flex items-center justify-center transition-all text-base font-bold ${
-                      cart.includes(product.id)
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-secondary text-foreground hover:bg-primary hover:text-primary-foreground"
-                    }`}
+                    onClick={(e) => { e.stopPropagation(); toggleWishlist(product.id); }}
+                    className="w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all hover:bg-black/70 shrink-0"
                   >
-                    <Icon name={cart.includes(product.id) ? "Check" : "Plus"} size={18} />
+                    <Icon
+                      name="Heart"
+                      size={18}
+                      className={wishlist.includes(product.id) ? "fill-red-500 text-red-500" : "text-white"}
+                    />
                   </button>
+                </div>
+
+                {/* Bottom gradient + info */}
+                <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                <div className="absolute bottom-0 inset-x-0 p-5">
+                  <p className="text-white/60 text-sm mb-1">{product.seller}</p>
+                  <p className="text-white font-black text-xl leading-tight mb-3 line-clamp-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    {product.name}
+                  </p>
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <Icon name="Star" size={13} className="fill-yellow-400 text-yellow-400" />
+                        <span className="text-sm font-semibold text-white">{product.rating}</span>
+                        <span className="text-sm text-white/50">({product.reviews})</span>
+                      </div>
+                      <div className="text-2xl font-black text-white">{formatPrice(product.price)}</div>
+                      {product.oldPrice && (
+                        <div className="text-sm text-white/50 line-through">{formatPrice(product.oldPrice)}</div>
+                      )}
+                    </div>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); toggleCart(product.id); }}
+                      className={`w-14 h-14 rounded-full flex items-center justify-center transition-all shadow-lg shrink-0 ${
+                        cart.includes(product.id)
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-white text-black hover:bg-primary hover:text-primary-foreground"
+                      }`}
+                    >
+                      <Icon name={cart.includes(product.id) ? "Check" : "ShoppingBag"} size={22} />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
