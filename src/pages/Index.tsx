@@ -3,81 +3,8 @@ import Icon from "@/components/ui/icon";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
-const CATEGORIES = [
-  { id: "all", label: "Всё", icon: "LayoutGrid" },
-  { id: "clothing", label: "Одежда", icon: "Shirt" },
-  { id: "shoes", label: "Обувь", icon: "Footprints" },
-  { id: "jewelry", label: "Украшения", icon: "Gem" },
-  { id: "paintings", label: "Картины", icon: "Palette" },
-  { id: "instruments", label: "Инструменты", icon: "Music" },
-];
-
-const PRODUCTS = [
-  {
-    id: 1, category: "clothing", price: 4200, oldPrice: 5500,
-    name: "Свитер ручной вязки «Зима»",
-    seller: "Маша Кузнецова", rating: 4.9, reviews: 128,
-    tag: "Хит продаж",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-  },
-  {
-    id: 2, category: "jewelry", price: 1800, oldPrice: null,
-    name: "Серьги серебро «Луна»",
-    seller: "Анна Орлова", rating: 5.0, reviews: 74,
-    tag: "Новинка",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/1bb3829b-49f0-4473-b5de-8fcaa21af363.jpg",
-  },
-  {
-    id: 3, category: "paintings", price: 12000, oldPrice: 15000,
-    name: "Акварель «Утро в лесу»",
-    seller: "Игорь Белов", rating: 4.8, reviews: 42,
-    tag: null,
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-  },
-  {
-    id: 4, category: "shoes", price: 7500, oldPrice: null,
-    name: "Мокасины кожаные ручной работы",
-    seller: "Дмитрий Смирнов", rating: 4.7, reviews: 56,
-    tag: null,
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-  },
-  {
-    id: 5, category: "instruments", price: 18500, oldPrice: 22000,
-    name: "Укулеле soprano «Тропики»",
-    seller: "Сергей Лебедев", rating: 4.9, reviews: 31,
-    tag: "Скидка",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-  },
-  {
-    id: 6, category: "jewelry", price: 3200, oldPrice: null,
-    name: "Браслет из натуральных камней",
-    seller: "Наталья Соколова", rating: 4.6, reviews: 89,
-    tag: null,
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/1bb3829b-49f0-4473-b5de-8fcaa21af363.jpg",
-  },
-  {
-    id: 7, category: "clothing", price: 5800, oldPrice: 7200,
-    name: "Пальто шерстяное «Городской»",
-    seller: "Елена Попова", rating: 4.8, reviews: 63,
-    tag: "Скидка",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-  },
-  {
-    id: 8, category: "paintings", price: 8900, oldPrice: null,
-    name: "Маслом «Морской закат»",
-    seller: "Владимир Захаров", rating: 5.0, reviews: 17,
-    tag: "Новинка",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-  },
-];
-
-const SORT_OPTIONS = [
-  { value: "popular", label: "По популярности" },
-  { value: "price_asc", label: "Сначала дешевле" },
-  { value: "price_desc", label: "Сначала дороже" },
-  { value: "new", label: "Новинки" },
-];
+import { PRODUCTS, CATEGORIES, SORT_OPTIONS } from "@/data/products";
+import ProductPage from "@/pages/ProductPage";
 
 export default function Index() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -86,6 +13,7 @@ export default function Index() {
   const [cart, setCart] = useState<number[]>([]);
   const [wishlist, setWishlist] = useState<number[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
 
   const filtered = PRODUCTS.filter((p) => {
     const matchCat = activeCategory === "all" || p.category === activeCategory;
@@ -107,6 +35,17 @@ export default function Index() {
   };
 
   const formatPrice = (n: number) => n.toLocaleString("ru-RU") + " ₽";
+
+  if (selectedProduct !== null) {
+    return (
+      <ProductPage
+        productId={selectedProduct}
+        onBack={() => setSelectedProduct(null)}
+        cart={cart}
+        onToggleCart={toggleCart}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -239,7 +178,8 @@ export default function Index() {
           {filtered.map((product, i) => (
             <div
               key={product.id}
-              className="bg-card rounded-2xl overflow-hidden card-hover cursor-pointer border border-border/40"
+              onClick={() => { setSelectedProduct(product.id); window.scrollTo({ top: 0 }); }}
+              className="bg-card rounded-2xl overflow-hidden cursor-pointer border border-border/40 hover:border-primary/30 transition-all hover:-translate-y-1 duration-200"
               style={{ animation: `slideUp 0.4s ease ${i * 60}ms both` }}
             >
               <div className="relative aspect-square overflow-hidden">
