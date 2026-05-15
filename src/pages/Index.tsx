@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PRODUCTS, CATEGORIES, SORT_OPTIONS } from "@/data/products";
 import ProductPage from "@/pages/ProductPage";
+import CheckoutPage from "@/pages/CheckoutPage";
 
 export default function Index() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -14,6 +15,7 @@ export default function Index() {
   const [wishlist, setWishlist] = useState<number[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
+  const [checkout, setCheckout] = useState(false);
 
   const filtered = PRODUCTS.filter((p) => {
     const matchCat = activeCategory === "all" || p.category === activeCategory;
@@ -35,6 +37,16 @@ export default function Index() {
   };
 
   const formatPrice = (n: number) => n.toLocaleString("ru-RU") + " ₽";
+
+  if (checkout) {
+    return (
+      <CheckoutPage
+        cart={cart}
+        onBack={() => { setCheckout(false); setCartOpen(true); }}
+        onSuccess={() => { setCheckout(false); setCart([]); setCartOpen(false); window.scrollTo({ top: 0 }); }}
+      />
+    );
+  }
 
   if (selectedProduct !== null) {
     return (
@@ -297,7 +309,10 @@ export default function Index() {
                     {formatPrice(PRODUCTS.filter((p) => cart.includes(p.id)).reduce((s, p) => s + p.price, 0))}
                   </span>
                 </div>
-                <Button className="w-full rounded-full h-12 font-bold bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button
+                  onClick={() => { setCartOpen(false); setCheckout(true); window.scrollTo({ top: 0 }); }}
+                  className="w-full rounded-full h-12 font-bold bg-primary text-primary-foreground hover:bg-primary/90"
+                >
                   Оформить заказ
                 </Button>
               </div>
