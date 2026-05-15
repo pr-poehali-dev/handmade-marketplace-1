@@ -19,14 +19,14 @@ export type Product = {
 };
 
 const IMG = {
-  sweater: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/322aaa6e-9763-4236-b767-c46f290d8e74.jpg",
-  earrings: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/845b801c-8cae-4250-8e1c-b99b60d7c199.jpg",
-  watercolor: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/35573792-a627-4c12-afc3-ab7cffa629a0.jpg",
-  moccasins: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/9afcf1c6-4db2-4dbe-ad75-52bace8878f7.jpg",
-  ukulele: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/2c659765-75f6-464f-89a5-d0af806e48cc.jpg",
-  bracelet: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a8ae37bc-d802-497c-8fba-35f65daa36fd.jpg",
-  coat: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/ab251117-9715-4e6d-abd4-043b6d991e32.jpg",
-  oilpainting: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/3d06f46d-1fb0-4003-b74a-9ab5929e3ede.jpg",
+  sweater: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/0d69f7af-729c-4913-8162-cc7701d2c7dc.jpg",
+  earrings: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/976a4196-fe2c-4b13-9329-3325f0211090.jpg",
+  watercolor: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/f65bf14b-ca52-48a0-9e1e-fd5c70772c42.jpg",
+  moccasins: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/da423037-b645-41b4-9155-f388f344e3dc.jpg",
+  ukulele: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/f7eb160b-f3f3-49b4-9759-1e46fd11d95a.jpg",
+  bracelet: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/de7a840c-2cf5-4c05-af7e-2ac45838af36.jpg",
+  coat: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/2480e58f-9116-46e7-b363-02c6bcbcf1bb.jpg",
+  oilpainting: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/6e5c89e6-6690-4d8b-bc29-194583c03ece.jpg",
 };
 
 export const PRODUCTS: Product[] = [
