@@ -18,19 +18,26 @@ export type Product = {
   reviewsList?: { author: string; rating: number; text: string; date: string }[];
 };
 
+const IMG = {
+  sweater: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/322aaa6e-9763-4236-b767-c46f290d8e74.jpg",
+  earrings: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/845b801c-8cae-4250-8e1c-b99b60d7c199.jpg",
+  watercolor: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/35573792-a627-4c12-afc3-ab7cffa629a0.jpg",
+  moccasins: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/9afcf1c6-4db2-4dbe-ad75-52bace8878f7.jpg",
+  ukulele: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/2c659765-75f6-464f-89a5-d0af806e48cc.jpg",
+  bracelet: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a8ae37bc-d802-497c-8fba-35f65daa36fd.jpg",
+  coat: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/ab251117-9715-4e6d-abd4-043b6d991e32.jpg",
+  oilpainting: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/3d06f46d-1fb0-4003-b74a-9ab5929e3ede.jpg",
+};
+
 export const PRODUCTS: Product[] = [
   {
     id: 1, category: "clothing", price: 4200, oldPrice: 5500,
     name: "Свитер ручной вязки «Зима»",
     seller: "Маша Кузнецова", sellerSince: "2019", sellerSales: 312, rating: 4.9, reviews: 128,
     tag: "Хит продаж",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-    images: [
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/1bb3829b-49f0-4473-b5de-8fcaa21af363.jpg",
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-    ],
-    description: "Тёплый свитер из 100% мериносовой шерсти, связанный вручную. Уникальный узор «скандинавская снежинка» — каждое изделие создаётся индивидуально. Подходит для повседневной носки и путешествий. Не требует специального ухода — достаточно бережной стирки вручную или в режиме «деликатный».",
+    image: IMG.sweater,
+    images: [IMG.sweater, IMG.coat, IMG.moccasins],
+    description: "Этот свитер — как объятия в снегопад. Каждая петля вывязана вручную из 100% мериносовой шерсти: невесомой, невероятно мягкой и тёплой даже в сильный мороз. Скандинавский узор «снежинка» на каждом изделии уникален — два одинаковых просто не существует. Вы получаете не просто одежду, а вещь с историей, которую будете носить годами и передадите по наследству.",
     specs: [
       { label: "Материал", value: "100% мериносовая шерсть" },
       { label: "Размеры", value: "XS, S, M, L, XL" },
@@ -49,12 +56,9 @@ export const PRODUCTS: Product[] = [
     name: "Серьги серебро «Луна»",
     seller: "Анна Орлова", sellerSince: "2021", sellerSales: 187, rating: 5.0, reviews: 74,
     tag: "Новинка",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/1bb3829b-49f0-4473-b5de-8fcaa21af363.jpg",
-    images: [
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/1bb3829b-49f0-4473-b5de-8fcaa21af363.jpg",
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-    ],
-    description: "Изящные серьги в форме полумесяца из стерлингового серебра 925 пробы. Ручная работа с использованием техники зернения. Лёгкие и удобные для ежедневной носки. Поставляются в красивой подарочной коробочке.",
+    image: IMG.earrings,
+    images: [IMG.earrings, IMG.bracelet],
+    description: "Луна — вечный символ красоты и загадки. Эти серьги в форме тонкого полумесяца сделаны из серебра 925 пробы с применением старинной техники зернения: каждая точка нанесена вручную под увеличительным стеклом. Весят меньше пяти граммов — вы забудете, что они надеты, но окружающие точно заметят. Идеальный подарок себе или любимой.",
     specs: [
       { label: "Металл", value: "Серебро 925" },
       { label: "Длина", value: "3,5 см" },
@@ -71,12 +75,9 @@ export const PRODUCTS: Product[] = [
     name: "Акварель «Утро в лесу»",
     seller: "Игорь Белов", sellerSince: "2017", sellerSales: 94, rating: 4.8, reviews: 42,
     tag: null,
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-    images: [
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-    ],
-    description: "Оригинальная акварельная картина, написанная с натуры во время пленэра в Карелии. Передаёт мягкий утренний свет, пробивающийся сквозь кроны деревьев. Работа выполнена на профессиональной бумаге 300 г/м² Arches. Поставляется с сертификатом подлинности и паспарту.",
+    image: IMG.watercolor,
+    images: [IMG.watercolor, IMG.oilpainting],
+    description: "Представьте: раннее утро в карельском лесу, запах хвои, тишина и золотой свет, пробивающийся сквозь сосны. Именно это мгновение поймал художник во время пленэра и перенёс на профессиональную бумагу Arches 300 г/м². Акварель живёт — она светится изнутри и меняется в зависимости от освещения комнаты. Работа единственная в своём роде, с сертификатом подлинности.",
     specs: [
       { label: "Техника", value: "Акварель" },
       { label: "Размер", value: "40 × 50 см" },
@@ -94,12 +95,9 @@ export const PRODUCTS: Product[] = [
     name: "Мокасины кожаные ручной работы",
     seller: "Дмитрий Смирнов", sellerSince: "2018", sellerSales: 221, rating: 4.7, reviews: 56,
     tag: null,
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-    images: [
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-    ],
-    description: "Классические мокасины ручной работы из натуральной телячьей кожи. Подошва из натурального каучука, удобная колодка для длительной носки. Каждая пара шьётся индивидуально под ваш размер. Идеальны для города и загородных прогулок.",
+    image: IMG.moccasins,
+    images: [IMG.moccasins, IMG.coat],
+    description: "Обувь, которую шьют руками — это другой уровень. Телячья кожа отборного дубления со временем принимает форму именно вашей стопы и становится только лучше. Каждый шов прошит вощёной нитью вручную — такой не расходится даже через годы носки. Подошва из натурального каучука пружинит и не скользит. Вы скажете этим мокасинам «да» однажды — и будете носить их вечно.",
     specs: [
       { label: "Материал", value: "Натуральная телячья кожа" },
       { label: "Подошва", value: "Натуральный каучук" },
@@ -117,12 +115,9 @@ export const PRODUCTS: Product[] = [
     name: "Укулеле soprano «Тропики»",
     seller: "Сергей Лебедев", sellerSince: "2020", sellerSales: 58, rating: 4.9, reviews: 31,
     tag: "Скидка",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-    images: [
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/1bb3829b-49f0-4473-b5de-8fcaa21af363.jpg",
-    ],
-    description: "Ручная работа мастера с 15-летним стажем. Дека из цельного кедра, обечайки и задняя дека — красное дерево (махагони). Ладовое покрытие из перламутра. Инструмент прошёл профессиональную настройку, поставляется с чехлом и набором запасных струн.",
+    image: IMG.ukulele,
+    images: [IMG.ukulele, IMG.watercolor],
+    description: "Возьмите в руки — и почувствуете разницу сразу. Дека из цельного кедра даёт тот самый живой, чуть медовый звук, который невозможно получить на фабричном инструменте. Обечайки из красного дерева (махагони) добавляют теплоты и глубины. Мастер с 15-летним стажем лично настроил каждую струну перед отправкой. Укулеле для тех, кто хочет играть — а не просто держать инструмент на стене.",
     specs: [
       { label: "Масштаб", value: "Soprano (345 мм)" },
       { label: "Дека", value: "Цельный кедр" },
@@ -140,12 +135,9 @@ export const PRODUCTS: Product[] = [
     name: "Браслет из натуральных камней",
     seller: "Наталья Соколова", sellerSince: "2022", sellerSales: 145, rating: 4.6, reviews: 89,
     tag: null,
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/1bb3829b-49f0-4473-b5de-8fcaa21af363.jpg",
-    images: [
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/1bb3829b-49f0-4473-b5de-8fcaa21af363.jpg",
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-    ],
-    description: "Браслет из натуральных полудрагоценных камней: лабрадорит, лунный камень и горный хрусталь. Нанизаны на прочную эластичную нить. Каждый камень отобран вручную за красоту и качество. Размер универсальный, подходит для запястья 15–19 см.",
+    image: IMG.bracelet,
+    images: [IMG.bracelet, IMG.earrings],
+    description: "Лабрадорит играет синим пламенем при повороте запястья. Лунный камень светится как маленькая луна. Горный хрусталь чист как горный воздух. Три камня, отобранных вручную за игру света и энергетику — нанизаны на прочную хирургическую нить. Браслет, который замечают все. Его одевают утром и снимают только на ночь.",
     specs: [
       { label: "Камни", value: "Лабрадорит, лунный камень, хрусталь" },
       { label: "Фурнитура", value: "Нержавеющая сталь, позолота" },
@@ -162,12 +154,9 @@ export const PRODUCTS: Product[] = [
     name: "Пальто шерстяное «Городской»",
     seller: "Елена Попова", sellerSince: "2016", sellerSales: 408, rating: 4.8, reviews: 63,
     tag: "Скидка",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-    images: [
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/1bb3829b-49f0-4473-b5de-8fcaa21af363.jpg",
-    ],
-    description: "Лаконичное пальто прямого кроя из итальянской шерсти с кашемиром. Пошито вручную с тщательной обработкой каждого шва. Подкладка из натурального шёлка. Идеально для делового и повседневного образа. Возможен пошив по индивидуальным меркам.",
+    image: IMG.coat,
+    images: [IMG.coat, IMG.sweater],
+    description: "Пальто, в котором не нужно выбирать между стилем и теплом. Итальянская шерсть с кашемиром держит тепло при −15°C и при этом выглядит безупречно на деловой встрече. Прямой крой универсален: работает с джинсами, с платьем, с костюмом. Шёлковая подкладка приятна на коже. Каждый шов обработан вручную — потому что Елена шьёт только так.",
     specs: [
       { label: "Состав", value: "80% шерсть, 20% кашемир" },
       { label: "Подкладка", value: "Натуральный шёлк" },
@@ -177,6 +166,7 @@ export const PRODUCTS: Product[] = [
     ],
     reviewsList: [
       { author: "Юля Ф.", rating: 5, text: "Ношу уже третий сезон. Качество безупречное, форма не теряется.", date: "2 мая 2026" },
+      { author: "Марина Д.", rating: 5, text: "Заказала в графите — это просто идеальный цвет. Все спрашивают где купила.", date: "15 апр 2026" },
     ],
   },
   {
@@ -184,14 +174,11 @@ export const PRODUCTS: Product[] = [
     name: "Маслом «Морской закат»",
     seller: "Владимир Захаров", sellerSince: "2015", sellerSales: 76, rating: 5.0, reviews: 17,
     tag: "Новинка",
-    image: "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-    images: [
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/a934ea07-4a5f-4d82-9371-72ce316b1ab2.jpg",
-      "https://cdn.poehali.dev/projects/8cda554e-1afa-4bc5-856e-762f869bb997/files/163e4b8b-0b74-49be-a5b7-b28aeeb582ef.jpg",
-    ],
-    description: "Картина маслом, написанная на холсте во время поездки на Чёрное море. Насыщенные закатные тона — от золотого до глубокого пурпура. Работа выполнена на льняном холсте на подрамнике, покрыта лаком для долговечности. Готова к подвеске без дополнительного обрамления.",
+    image: IMG.oilpainting,
+    images: [IMG.oilpainting, IMG.watercolor],
+    description: "Черноморский закат — это не просто красиво, это физически ощутимо. Художник поймал тот редкий момент, когда небо горит золотом, а море становится тёмно-пурпурным. Масло нанесено мастихином — фактура видна на расстоянии, картина живёт объёмом. Льняной холст на сосновом подрамнике, покрытый лаком — простоит сто лет без реставрации. Меняет любой интерьер с первого взгляда.",
     specs: [
-      { label: "Техника", value: "Масло на холсте" },
+      { label: "Техника", value: "Масло, мастихин" },
       { label: "Размер", value: "60 × 80 см" },
       { label: "Холст", value: "Лён, подрамник сосна" },
       { label: "Год", value: "2026" },
@@ -199,6 +186,7 @@ export const PRODUCTS: Product[] = [
     ],
     reviewsList: [
       { author: "Алексей Г.", rating: 5, text: "Живая, энергичная картина. Каждый раз нахожу в ней что-то новое.", date: "11 мая 2026" },
+      { author: "Наташа С.", rating: 5, text: "Повесила напротив дивана — первое что вижу каждое утро. Настроение сразу лучше!", date: "8 мая 2026" },
     ],
   },
 ];
